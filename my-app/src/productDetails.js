@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { NavLink, useParams } from "react-router-dom"
 import { CartContext } from "./cartProvider"
+import { ProductCard } from "./productCard"
 
 export const ProductDetails =()=>{
 
@@ -28,14 +29,7 @@ export const ProductDetails =()=>{
                 GetProducts.map((element)=>{
                     if(element.id === productId){
                         return(
-                            <div>
-                                <h2>{element.title}</h2>
-                                <h3>{element.author}</h3>
-                                <p>Category: {element.categoryName}</p>
-                                <p>Price: {element.price} </p>
-
-                               <button><NavLink to="/productList">See All</NavLink></button> 
-                            </div>
+                            <ProductCard {...element} />
                         )
                     }
                 })

@@ -34,22 +34,29 @@ export const HomePage =()=>{
 
 
     return(
-        <div>
+        <div >
+            
+            
+                <img width="100%" height="50%" src="https://images.pexels.com/photos/1370298/pexels-photo-1370298.jpeg"></img>
+            
 
-        <h2 >Home</h2>
 
-        <ul>
+
+    
+
+        
             {
                 category.map(({id , description , categoryName})=>(
-                    <li
+                    <div
+                    className="homeBtn"
                     
                     key={id}>
                         <h2 ><NavLink to="/productList" onClick={()=>homeClickHandler(categoryName)}>{categoryName}</NavLink></h2>
                         <p>{description}</p>
-                    </li>
+                    </div>
                 ))
             }
-        </ul>
+        
         
 
         </div>

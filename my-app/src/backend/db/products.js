@@ -62,5 +62,16 @@ export const products = [
     categoryName: "non-fiction",
     rating:5
     
+  },{
+
+    _id: uuid(),
+    title: "Believe in Yourself",
+    author: "Rachel Carson",
+    price: 1200,
+    categoryName: "non-fiction",
+    rating:4
+
+
+
   }
 ];

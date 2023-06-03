@@ -5,11 +5,16 @@ export const CartContext = createContext()
 export const CartProvider = ({ children }) => {
 
     const [GetProducts, setProducts] = useState([])
+    
+
     const [filteredProducts, setFilteredProducts] = useState([])
     const [cart ,setCart] =useState([])
+
     
     const [getWishList , setWishlist] = useState([])
     
+    
+
 
 
 
@@ -18,11 +23,15 @@ export const CartProvider = ({ children }) => {
         try {
 
             const res = await fetch("/api/products")
-
             const response = await res.json()
             const { products } = response
             setProducts(products)
             setFilteredProducts(products)
+
+            
+            
+        
+
 
 
 
@@ -38,50 +47,34 @@ export const CartProvider = ({ children }) => {
         GetData()
     }, [])
 
-    const FictionCategoryHandler = (e) => {
-        
-
-        const useFilter = GetProducts.filter((element) => element.categoryName === "fiction")
-        if (e.target.checked === true) {
-            setFilteredProducts(useFilter)
-
-        } else {
-            setFilteredProducts(GetProducts)
-        }
+    
 
     
-    }
 
-    const NonFictionCategoryHandler = (e) => {
+    const globalCategoryFunc = (e)=>{
+      
+               
+    if(e.target.checked === true){
 
-        const useFilter = GetProducts.filter((element) => element.categoryName === "non-fiction")
-
-        if (e.target.checked === true) {
-            setFilteredProducts(useFilter)
-        } else {
-            setFilteredProducts(GetProducts)
-        }
-
-    }
-    const HorrorCategoryHandler = (e) => {
-        const GetHorror = GetProducts.filter((element) => element.categoryName === "horror")
-
-        if (e.target.checked === true) {
-            setFilteredProducts(GetHorror)
-        } else {
-            setFilteredProducts(GetProducts)
-        }
-
-    }
-
-    const PriceHandler = (e) => {
-
-
-
-        const useFilter = GetProducts.filter((element) => element.rating === Number(e.target.value)
-        )
-
+        const useFilter = GetProducts.filter((element)=>element.categoryName === e.target.value)
         setFilteredProducts(useFilter)
+    }else{
+        setFilteredProducts(GetProducts)
+    }
+    
+
+        
+
+
+    }
+
+    const RatingHandler = (e) => {
+
+
+
+        const getRating =GetProducts.filter((element)=>element.rating === Number(e.target.value))
+
+        setFilteredProducts(getRating)
 
 
 
@@ -92,43 +85,33 @@ export const CartProvider = ({ children }) => {
 
 
 
-        const sortLowToHigh = GetProducts.sort((a, b) => a.price - b.price)
-        console.log(sortLowToHigh)
-        console.log(e.target.checked)
-
-
-        if (e.target.checked === true) {
-            setFilteredProducts(sortLowToHigh)
-        } else {
-            setFilteredProducts(GetProducts)
-        }
+        const sortLowToHigh = [...GetProducts].sort((a, b) => a.price - b.price)
+        setFilteredProducts(sortLowToHigh)
+        
     }
 
     const HighToLow = (e) => {
 
-        const sortHighToLow = GetProducts.sort((a, b) => b.price - a.price)
-        if (e.target.checked === true) {
-
-            setFilteredProducts(sortHighToLow)
-
-        } else {
-            setFilteredProducts(GetProducts)
-        }
-
+        const sortHighToLow = [...GetProducts].sort((a, b) => b.price - a.price)
+    
+        setFilteredProducts(sortHighToLow)
 
 
     }
     const AddToCartHandler = (item) => {
+    
 
         const isSimilar = cart.find((element)=>element.id === item.id)
 
         if(isSimilar){
-
+                
             const useMap = cart.map((element)=>{
+
+                
                 if(element.id === item.id){
-                return {...element , quantity:element.quantity+1}
+                return {  ...item, quantity:element.quantity++}
                 }else{
-                    return element
+                
                 }
 
             })
@@ -186,7 +169,7 @@ const RemoveWish =(id) =>{
 
 
     return (
-        <CartContext.Provider value={{ GetProducts, filteredProducts, FictionCategoryHandler, NonFictionCategoryHandler, HorrorCategoryHandler, PriceHandler, LowToHigh, HighToLow, AddToCartHandler , cart  , useReduce , removeCartHandler , homeClickHandler  ,AddToWishlist , getWishList , RemoveWish ,  }}>
+        <CartContext.Provider value={{ GetProducts, filteredProducts, RatingHandler, LowToHigh, HighToLow, AddToCartHandler , cart  , useReduce , removeCartHandler , homeClickHandler  ,AddToWishlist , getWishList , RemoveWish ,globalCategoryFunc  }}>
             {children}
         </CartContext.Provider>
     )

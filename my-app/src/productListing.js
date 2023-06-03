@@ -2,24 +2,23 @@ import React from "react"
 import { useContext } from "react"
 import { CartContext } from "./cartProvider"
 import {NavLink, navLink} from "react-router-dom"
+import { ProductCard } from "./productCard"
 
 
 export const ProductList =()=>{
 
     const {filteredProducts} = useContext(CartContext)
-    const {FictionCategoryHandler} =useContext(CartContext)
-    const {NonFictionCategoryHandler} =useContext(CartContext)
-    const {HorrorCategoryHandler} =useContext(CartContext)
-    const {PriceHandler} =useContext(CartContext)
+    const {RatingHandler} =useContext(CartContext)
     const {LowToHigh} =useContext(CartContext)
     const {HighToLow} =useContext(CartContext)
     const {AddToCartHandler} =useContext(CartContext)
     const {homeCategory} =useContext(CartContext)
     const {AddToWishlist} =useContext(CartContext)
+    const {globalCategoryFunc} =useContext(CartContext)
+    const {isAddedToCart} = useContext(CartContext)
 
-
-
-console.log(homeCategory)
+    console.log(isAddedToCart)
+    
 
     return(
         <div>
@@ -32,25 +31,38 @@ console.log(homeCategory)
 
         <h3>By category</h3>
         <label>Fiction</label>
-        <input onChange={FictionCategoryHandler} type="checkbox"  ></input>
+        <input onChange={globalCategoryFunc} type="checkbox" value="fiction"  ></input>
         
         <label>Non-Fiction</label>
-        <input onChange={NonFictionCategoryHandler} type="checkbox"></input>
+        <input onChange={globalCategoryFunc} type="checkbox" value="non-fiction"></input>
 
         <label>Horror</label>
-        <input onChange={HorrorCategoryHandler} type="checkbox"></input>
+        <input onChange={globalCategoryFunc} type="checkbox" value="horror"></input>
 
         <h3>Rating</h3>
 
+        <input type="range" max="5" min="1" onChange={RatingHandler}/>
 
-<input type="range" min="1"  max="5"  value="1"  onChange={PriceHandler}></input>
+        <h3>Sort</h3>
 
-<h3>sort</h3>
-<label for="sort" >Low To High</label>
-<input type="radio" name="sort" onChange={LowToHigh}></input>
+        <label for="lowToHigh">LowToHigh</label>
+      <input
+        type="radio"
+        id="lowToHigh"
+        name="sort"
+        value="lowHigh"
+        onChange={LowToHigh}
+      />
+      <label for="HighToLow">HighToLow</label>
+      <input
+        type="radio"
+        id="HighToLow"
+        name="sort"
+        value="HighLow"
+        onChange={HighToLow}
+      />
 
-<label for="sort" >High To Low</label>
-<input type="radio" name="sort" onChange={HighToLow}></input>
+
 
 
 
@@ -63,41 +75,8 @@ console.log(homeCategory)
 
             {
 
-                filteredProducts.map((item)=>{
-
-                    const {id , title , author , price ,categoryName} = item
-
-                    return(
-                        
-
-                        
-
-
-
-                        <div 
-                        
-                        className="Container"
-                        key={id}>
-
-                            
-
-
-
-
-
-                            <h2>{title}</h2>
-                            <h3>{author}</h3>
-                            <p>Price: {price}</p>
-
-
-                            <button>  <NavLink to={`/productDetail/${id}`}  >View Product</NavLink></button>
-                           <button><NavLink  to="/productCart" onClick={()=>AddToCartHandler(item)}>AddToCart</NavLink></button>
-                           <button><NavLink to="/wishlist" onClick={()=>AddToWishlist(item)}>AddToWishlist</NavLink></button>
-
-
-                        </div>
-                    )
-                })
+                filteredProducts.map((item)=>
+                <ProductCard {...item} isProdDetail/>)
 
 
 
