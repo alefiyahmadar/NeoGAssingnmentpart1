@@ -1,3 +1,4 @@
+import React from "react";
 import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext()
@@ -5,10 +6,15 @@ export const CartContext = createContext()
 export const CartProvider = ({ children }) => {
 
     const [GetProducts, setProducts] = useState([])
+
+    const [filters , setFilter] = useState({checkBox:[] ,sort:"" , rating:""  , searchValue:""  , categoryValue:""})
     
 
-    const [filteredProducts, setFilteredProducts] = useState([])
+    const [value , setValue] = useState(0)
+    const [clear , setClear] = useState([])
     const [cart ,setCart] =useState([])
+    const [state ,setState] = useState(false)
+    const [getCategory , setCategory] = useState([])
 
     
     const [getWishList , setWishlist] = useState([])
@@ -26,7 +32,9 @@ export const CartProvider = ({ children }) => {
             const response = await res.json()
             const { products } = response
             setProducts(products)
-            setFilteredProducts(products)
+            setClear(products)
+            setCategory(products)
+            
 
             
             
@@ -50,83 +58,95 @@ export const CartProvider = ({ children }) => {
     
 
     
-
-    const globalCategoryFunc = (e)=>{
-      
-               
-    if(e.target.checked === true){
-
-        const useFilter = GetProducts.filter((element)=>element.categoryName === e.target.value)
-        setFilteredProducts(useFilter)
-    }else{
-        setFilteredProducts(GetProducts)
-    }
+const getCheckBoxArr = (e)=>{
     
 
-        
+    setFilter({...filters , checkBox:[...filters.checkBox , e.target.value]})
+
+    const isSimilar = filters.checkBox.find((element)=> element === e.target.value)
+
+    setFilter({
+        ...filters , 
+        checkBox: isSimilar ? filters.checkBox.filter((element)=>element !== e.target.value) : [...filters.checkBox , e.target.value]
+    })
 
 
-    }
-
-    const RatingHandler = (e) => {
-
-
-
-        const getRating =GetProducts.filter((element)=>element.rating === Number(e.target.value))
-
-        setFilteredProducts(getRating)
-
-
-
-
-    }
-
-    const LowToHigh = (e) => {
+}
 
 
 
-        const sortLowToHigh = [...GetProducts].sort((a, b) => a.price - b.price)
-        setFilteredProducts(sortLowToHigh)
-        
-    }
+const categoryData =
+    filters.checkBox.length > 0
+      ? GetProducts.filter((item) =>
+          filters.checkBox.some((category) => item[category])
+        )
+      : GetProducts;
 
-    const HighToLow = (e) => {
+  
+ const SortHandler= (e)=>{
 
-        const sortHighToLow = [...GetProducts].sort((a, b) => b.price - a.price)
+    setFilter({...filters , sort:e.target.value})
+
+ }
+ console.log(filters)
+
+const getSort = filters.sort ? categoryData.sort((a,b)=> filters.sort === "lowHigh" ? a.price - b.price : b.price - a.price) : categoryData
+
+
+const RatingHandler = (e)=>{
+
     
-        setFilteredProducts(sortHighToLow)
+    setValue(e.target.value)
+    setFilter({...filters , rating:e.target.value})
+
+}
 
 
+
+const getRating = filters.rating > 0 ? getSort.filter((data)=>data.rating === Number(filters.rating)) : getSort
+
+
+
+const SearchBarHandler = (e)=>{
+    
+
+    setFilter({...filters , searchValue:e.target.value.toLowerCase()})
+}
+const getSearchData = filters.searchValue ? getRating.filter((element)=> element.title.toLowerCase().includes(filters.searchValue)) : getRating
+
+
+
+
+const getCategoryHandler =(category)=>{
+    setFilter({...filters , categoryValue:category})
+    
     }
+   
+
+
+const clearFilterHandler = (e)=>{
+
+    setState(true)
+    
+    
+}
+
+
+
     const AddToCartHandler = (item) => {
     
 
-        const isSimilar = cart.find((element)=>element.id === item.id)
-
-        if(isSimilar){
-                
-            const useMap = cart.map((element)=>{
-
-                
-                if(element.id === item.id){
-                return {  ...item, quantity:element.quantity++}
-                }else{
-                
-                }
-
-            })
-            setCart(useMap)
-        }
+       
 
         
-        setCart([...cart ,{ ...item , quantity : 1}])
+        setCart([...cart ,{ ...item }])
 
 
     }
 
 
 
-        const useReduce = cart.reduce((acc ,curr)=>acc + curr.price , 0)
+        const useReduce = cart.reduce((acc ,curr)=>acc + curr.price * curr.quantity , 0)
         
     
 const removeCartHandler=(id)=>{
@@ -139,17 +159,7 @@ setCart(useFilter)
 
 }
 
-const homeClickHandler =(categoryName)=>{
-    
 
-const useFilter=GetProducts.filter((element)=>element.categoryName === categoryName)
-setFilteredProducts(useFilter)
-
-
-
-
-    
-}
 
 const AddToWishlist =(item)=>{
 
@@ -168,8 +178,14 @@ const RemoveWish =(id) =>{
 
 
 
+
+
+
+
+
+
     return (
-        <CartContext.Provider value={{ GetProducts, filteredProducts, RatingHandler, LowToHigh, HighToLow, AddToCartHandler , cart  , useReduce , removeCartHandler , homeClickHandler  ,AddToWishlist , getWishList , RemoveWish ,globalCategoryFunc  }}>
+        <CartContext.Provider value={{ GetProducts, getRating, SortHandler,RatingHandler,value,SearchBarHandler,getSearchData,clear,clearFilterHandler , state , AddToCartHandler , cart  , setCart,useReduce , removeCartHandler   ,AddToWishlist , getWishList , RemoveWish ,getCheckBoxArr ,getSearchData , getCategoryHandler  }}>
             {children}
         </CartContext.Provider>
     )

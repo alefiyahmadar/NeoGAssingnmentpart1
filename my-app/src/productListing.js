@@ -1,47 +1,68 @@
-import React from "react"
+import React from "react";
+import  { useState } from "react"
 import { useContext } from "react"
 import { CartContext } from "./cartProvider"
 import {NavLink, navLink} from "react-router-dom"
 import { ProductCard } from "./productCard"
+import { AuthContext } from "./AuthContext";
 
 
 export const ProductList =()=>{
 
-    const {filteredProducts} = useContext(CartContext)
-    const {RatingHandler} =useContext(CartContext)
-    const {LowToHigh} =useContext(CartContext)
-    const {HighToLow} =useContext(CartContext)
+
+  
+
+    const {RatingHandler} = useContext(CartContext)
+    const {getSearchData} =useContext(CartContext)
+    const {SortHandler} =useContext(CartContext)
+    const {value} = useContext(CartContext)
+    const {clear} = useContext(CartContext)
+   
     const {AddToCartHandler} =useContext(CartContext)
     const {homeCategory} =useContext(CartContext)
     const {AddToWishlist} =useContext(CartContext)
-    const {globalCategoryFunc} =useContext(CartContext)
-    const {isAddedToCart} = useContext(CartContext)
-
-    console.log(isAddedToCart)
+    const {getCheckBoxArr} =useContext(CartContext)
+    const{clearFilterHandler} = useContext(CartContext)
+    const {state} =useContext(CartContext)
+    const { getHorrorCategory} =useContext(CartContext)
+    
     
 
-    return(
+    
+
+    const data = state ? clear   : getSearchData
+
+  
+    
+    
+    
+
+    return( 
         <div>
 
-            <h2>productList</h2>
+          
 
+
+          <div className="filters">
+
+           
         <h2>Filters</h2>
 
-
+        <button className="clear" onClick={clearFilterHandler}>Clear</button>
 
         <h3>By category</h3>
         <label>Fiction</label>
-        <input onChange={globalCategoryFunc} type="checkbox" value="fiction"  ></input>
+        <input onChange={getCheckBoxArr} type="checkbox" value="fiction"   ></input>
         
         <label>Non-Fiction</label>
-        <input onChange={globalCategoryFunc} type="checkbox" value="non-fiction"></input>
+        <input onChange={getCheckBoxArr} type="checkbox" value="nonfiction"></input>
 
         <label>Horror</label>
-        <input onChange={globalCategoryFunc} type="checkbox" value="horror"></input>
+        <input onChange={getCheckBoxArr} type="checkbox" value="horror"></input>
 
         <h3>Rating</h3>
 
-        <input type="range" max="5" min="1" onChange={RatingHandler}/>
+        <input type="range" max="5" min="0" value={value} onChange={RatingHandler}/>
 
         <h3>Sort</h3>
 
@@ -51,7 +72,7 @@ export const ProductList =()=>{
         id="lowToHigh"
         name="sort"
         value="lowHigh"
-        onChange={LowToHigh}
+        onChange={SortHandler}
       />
       <label for="HighToLow">HighToLow</label>
       <input
@@ -59,29 +80,33 @@ export const ProductList =()=>{
         id="HighToLow"
         name="sort"
         value="HighLow"
-        onChange={HighToLow}
+        onChange={SortHandler} 
       />
+      
+
+      </div >
 
 
 
 
 
-
+<div className="productContainer"> 
  
-
+<p>k</p>
 
 
 
 
             {
 
-                filteredProducts.map((item)=>
-                <ProductCard {...item} isProdDetail/>)
+                data.map((item)=>
+                < ProductCard {...item} isProdDetail/>)
 
 
 
 
 }
+</div>
         </div>
 
 

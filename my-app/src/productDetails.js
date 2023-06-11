@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext, useState } from "react"
 import { NavLink, useParams } from "react-router-dom"
 import { CartContext } from "./cartProvider"
@@ -11,6 +12,7 @@ export const ProductDetails =()=>{
     
     const {GetProducts} =useContext(CartContext)
 
+    console.log(productId)
 
    
 

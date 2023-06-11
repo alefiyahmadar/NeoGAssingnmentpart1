@@ -1,11 +1,13 @@
+import React from "react";
 import { useContext, useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, Navigate } from "react-router-dom"
 import { CartContext } from "./cartProvider"
 
 export const HomePage =()=>{
   
     const [category , setCategories] =useState([])
-    const {homeClickHandler} = useContext(CartContext)
+    const {getCategoryHandler} = useContext(CartContext)
+
 
 
     const GetCategories = async()=>{
@@ -36,23 +38,23 @@ export const HomePage =()=>{
     return(
         <div >
             
-            
-                <img width="100%" height="50%" src="https://images.pexels.com/photos/1370298/pexels-photo-1370298.jpeg"></img>
-            
-
+          
 
 
     
 
         
             {
-                category.map(({id , description , categoryName})=>(
+                category.map((item )=>(
                     <div
                     className="homeBtn"
                     
-                    key={id}>
-                        <h2 ><NavLink to="/productList" onClick={()=>homeClickHandler(categoryName)}>{categoryName}</NavLink></h2>
-                        <p>{description}</p>
+                    
+                    key={item.id}>
+
+                        <h3 ><NavLink to="/productList" onClick={()=>getCategoryHandler(item.category)}>{item.category}</NavLink></h3>
+                        
+                        <p>{item.description}</p>
                     </div>
                 ))
             }

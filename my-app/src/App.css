@@ -1,21 +1,275 @@
-.App {
+:root {
+
+  --light-color:#faf5ff;
+  --dark-color:#c084fc;
+
+}
+
+
+
+body{
+  font-family: 'Noto Sans', sans-serif;
+  margin: auto;
+  background-color: var(--light-color);
+}
+.nav{
+background-color: var(--dark-color);
+padding-left: 0.5rem;
+padding-top: 0.5rem;
+padding-bottom: 0.5rem;
+  
+}
+
+.links{
+  display: flex;
+
+  justify-content: flex-end;
+  padding: 0rem 1rem;
+}
+.home{
+
+  padding: 1rem;
+  font-size: larger;
+  margin-top: 1rem;
+  
+  text-decoration: none;
+}
+.list{
+
+  padding: 1rem;
+  font-size: larger;
+  margin-top: 1rem;
+  
+  text-decoration: none;
+
+}
+.cart{
+
+  
+  padding: 1rem;
+  
+  text-decoration: none;
+}
+.wishlist{
+  
+  padding: 1rem;
+  
+  text-decoration: none;
+}
+.productContainer{
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
+  
+  
+  
+}
+.Container{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  
+  
+  
+  height: 20%;
+  max-width: 30%;
+
+  padding: 10px;
+  box-shadow: 5px 10px #e5e7eb;
+  margin: 0.5rem;
+  
+
+  
+
+  
+}
+.Container img{
+
+  max-width: 100%;
+  
+}
+.Container h2{
+
+  color: black;
+}
+
+.filters{
+  padding: 1rem;
+  margin: 1.5rem;
+
+  text-align: center;
+}
+.clear{
+
+background-color:var(--light-color);
+border: none;
+text-decoration: underline;
+}
+.searchbar{
+
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 20%;
+  height: 20%;
+  border-radius: 1rem;
+  border: none;
+  
+  
+  padding: 0.5rem;
+}
+::placeholder{
+
+  color:grey;
+}
+.Cartbtn{
+
+margin: auto;
+  padding: 0.5rem ;
+  background-color: var(--dark-color);
+  
+  border-radius: 1rem;
+  font-size: medium;
+  max-width: fit-content;
+  border: none;
+  
+}
+.heart-button {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border: none;
+  position: relative;
+  transform: rotate(45deg);
+  cursor: pointer;
+  outline: none;
+}
+
+.heart-button:before,
+.heart-button:after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-color:red;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart-button:before {
+  top: -15px;
+  left: 0;
+}
+
+.heart-button:after {
+  top: 0;
+  left: -15px;
+}
+
+.heart-button:focus {
+  outline: none;
+}
+
+.Detailbtn{
+
+  
+  
+
+
+  margin: auto;
+  padding: 0.5rem ;
+  background-color: var(--dark-color);
+  margin-top: 1rem;
+  
+  border-radius: 1rem;
+  font-size: medium;
+  max-width: fit-content;
+  border: none;
+  text-decoration: none;
+
+}
+.detailBtnLink{
+  color: black;
+  
+  text-decoration: none;
+}
+
+.login{
+
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 40%;
+  height: 50%;
+  margin: auto;
+  margin-top:4rem ;
+  border: 2px solid var(--dark-color);
+  padding: 2rem 1rem;
+  border-radius: 2rem;
+  box-shadow: 5px 10px #e5e7eb;
   text-align: center;
 }
 
+.login h2{
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  padding: 0.5rem;
+  
+}
+.login label{
+ padding: 0.5rem;
+  
+}
+.login input{
+margin: auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 0.5px solid black;
+  width: 50%;
+  
+}
+.login button{
+
+  padding:  0.5rem;
+  width: 30%;
+  
+  margin: auto;
+  margin-top: 1rem;
+  background-color: var(--dark-color);
+  font-size: large;
+  border: none;
+  border-radius: 1rem;
+  padding-inline-start: 0%;
+  padding-inline-end: 0%;
+
+
 }
 
 
+.cartMain{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-top: 6rem;
+  max-width: 30%;
+}
+.cartHeader{
 
+  padding: 1rem;
+}
+.cartMain div{
 
-.Container{
+  display: flex;
+  align-items: flex-start;
+  grid-gap: 2rem;
+  gap: 2rem;
+}
+.cartProd{
 
-border: solid black 1px;
-padding:  1rem;
-margin: 1rem;
-list-style: none;
+  display: flex;
+    flex-direction: column;
+    grid-gap: 1rem;
+    gap: 1rem;
 }

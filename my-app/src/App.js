@@ -1,3 +1,5 @@
+
+import React from "react";
 import "./App.css";
 import logo from "./logo.png";
 import MockMan from "mockman-js"
@@ -13,6 +15,8 @@ import { GetWishlist } from "./wishlist";
 import { LoginPage } from "./login";
 import { AuthWrapper } from "./AuthWrapper";
 import { AuthContext } from "./AuthContext";
+import { UserPage } from "./user";
+import { SignUp } from "./signup";
 
 
 function App() {
@@ -22,6 +26,8 @@ function App() {
   const {getWishList}  =useContext(CartContext)
   const {isLoggedIn , setLogIn} =useContext(AuthContext)
   const {logInDisable , setLoginDisable} =useContext(AuthContext)
+  const {SearchBarHandler} = useContext(CartContext)
+  const {isSignIn ,setIsSignIn} =useContext(AuthContext)
 
  
 
@@ -31,14 +37,29 @@ function App() {
   return (
     <div className="App">
 
-<nav className="navbar">
-                <NavLink to="/">Home</NavLink> | |
-                <NavLink to="/productList">ProductList</NavLink>| |
-                <NavLink to="/productCart"><img width="50" height="50" src="https://img.icons8.com/dusk/64/shopping-cart--v1.png" alt="shopping-cart--v1"/>{cart.length}<>${useReduce}</></NavLink> 
-                <NavLink  to="/wishlist" > <img width="50" height="50" src="https://img.icons8.com/cotton/64/like--v4.png" alt="like--v4" />{getWishList.length}</NavLink>
+<nav className="nav">
+
+
+  <img className="bookstore" width="64" height="64" src="https://img.icons8.com/external-yogi-aprelliyanto-detailed-outline-yogi-aprelliyanto/64/000000/external-bookstore-book-store-yogi-aprelliyanto-detailed-outline-yogi-aprelliyanto.png" alt="external-bookstore-book-store-yogi-aprelliyanto-detailed-outline-yogi-aprelliyanto"/>
+
+
+              
+
+                <NavLink className="home" to="/">Home</NavLink> 
+                <NavLink className="list" to="/productList">ProductList</NavLink>
+                <NavLink className="cart" to="/productCart"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="shopping-cart"/>{  isLoggedIn ? cart.length : ""}<>{ isLoggedIn ? `$ ${useReduce}` :""}</></NavLink> 
+                <NavLink className="wishlist" to="/wishlist" > <img width="40" height="40" src="https://img.icons8.com/ios-filled/40/like--v1.png" alt="like--v1"/>{ isLoggedIn ? getWishList.length:""}</NavLink>
+                <NavLink to="/userProfile"><img width="40" height="40" src="https://img.icons8.com/external-itim2101-lineal-itim2101/64/000000/external-reader-life-style-avatar-itim2101-lineal-itim2101-1.png" alt="external-reader-life-style-avatar-itim2101-lineal-itim2101-1"/></NavLink>
                 
+
+                
+                <>   <input className="searchbar" type="text" placeholder="Search for product" id="searchBar" onChange={SearchBarHandler}/></>
               
             </nav>
+
+          
+            
+           
 
             
 
@@ -49,6 +70,7 @@ function App() {
       <Route path="/mockman" element={<MockMan/>}></Route>
       <Route path="/productList" element={<ProductList/>}></Route>
       <Route path="/productCart" element={
+        isSignIn ? <ProductCart/> :
         <AuthWrapper>
           <ProductCart/>
         </AuthWrapper>
@@ -56,11 +78,22 @@ function App() {
       <Route path="/productDetail/:productId" element={<ProductDetails/>}></Route>
 
       <Route path="/wishlist" element={
+
+        isSignIn ? <GetWishlist/> :
         <AuthWrapper>
           <GetWishlist/>
         </AuthWrapper>
       }></Route>
+
+      <Route path="/userProfile" element={
+        isSignIn ? <UserPage/> :
+
+      <AuthWrapper><UserPage/></AuthWrapper>
+      
+      
+      }></Route>
       <Route path="/login" element={<LoginPage/>}></Route>
+      <Route path="signup" element={<SignUp/>}></Route>
 
 
     </Routes>

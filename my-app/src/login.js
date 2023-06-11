@@ -1,34 +1,54 @@
+import React from "react";
 import { useContext } from "react"
 import { AuthContext } from "./AuthContext"
-import { useNavigate , useLocation } from "react-router-dom"
+import { useNavigate , useLocation, NavLink } from "react-router-dom"
 
 
 export const LoginPage = ()=>{
 
     const {isLoggedIn , setLogIn} =useContext(AuthContext)
   const {logInDisable , setLoginDisable} =useContext(AuthContext)
+  
+
+  
+  const { getFirstName , setFirstName , getLastName , setLastName , getemail , setemail } = useContext(AuthContext)
+
 
     
   const location =useLocation()
   const navigate = useNavigate()
-  const logInHandler =()=>{
+  const logInGuestHandler =()=>{
 
-    setLogIn(!isLoggedIn)
+    
 
-    navigate(location.state.from.pathname)
-    setLoginDisable(!logInDisable)
+
+      
+
+
+      setLogIn(!isLoggedIn)
+
+      navigate(location.state.from.pathname)
+      setLoginDisable(!logInDisable)
+      setemail("johndoe@gmail.com")
+      setFirstName("John")
+      setLastName("Doe")
+
+    
+
+    
     
    
    
 
     
   }
+  
 
 
 
     return(
-        <div>
-            <h2>Please Log In To Continue</h2>
+        <div className="login">
+            <h2>Sign In</h2>
 
         <label style={{display:"block"}} for="userEmail" >E-mail</label>
             <input type="email" id="userEmail"/>
@@ -37,8 +57,15 @@ export const LoginPage = ()=>{
     
                 <input type="password" id="userPassword"/>
 
+                <button >Login</button>
 
-                <button  onClick={logInHandler} disabled={logInDisable} >{isLoggedIn ? "LogOut" : "LogIn"}</button>
+
+                <button  onClick={logInGuestHandler} >{isLoggedIn ? "LogOut" : "Login As A Guest "}</button>
+
+                <p>Dont have an acoount? <NavLink to="/signup">Sign Up</NavLink></p>
+
+                
+                
         </div>
     )
 }
