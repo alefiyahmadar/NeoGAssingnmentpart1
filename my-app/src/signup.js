@@ -34,16 +34,16 @@ const signupHandler =  () => {
 
 
     return(
-        <div>
-            <h2>Sign Up</h2>
+        <div className="signin">
+            <h2 className="sign-head">Sign Up</h2>
 
-            <input onChange={(e)=>setFirstName(e.target.value)} type="text" placeholder="FirstName" />
-            <input onChange={(e)=>setLastName(e.target.value)} type="text" placeholder="LastName" />
-            <input onChange={(e)=>setemail(e.target.value)} type="text" placeholder="E-Mail" />
-            <input onChange={(e)=>setPassword(e.target.value)} type="text" placeholder="Password" />
+            <input style={{marginBottom:"1.5rem"}} onChange={(e)=>setFirstName(e.target.value)} type="text" placeholder="FirstName" />
+            <input style={{marginBottom:"1.5rem"}} onChange={(e)=>setLastName(e.target.value)} type="text" placeholder="LastName" />
+            <input style={{marginBottom:"1.5rem"}} onChange={(e)=>setemail(e.target.value)} type="text" placeholder="E-Mail" />
+            <input style={{marginBottom:"1.5rem"}} onChange={(e)=>setPassword(e.target.value)} type="text" placeholder="Password" />
 
             
-            <button onClick={signupHandler}> Sign Up</button>
+            <button onClick={signupHandler} className="sign-btn"> Sign Up</button>
 
 
         </div>

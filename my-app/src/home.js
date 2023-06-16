@@ -1,12 +1,15 @@
 import React from "react";
 import { useContext, useEffect, useState } from "react"
-import { NavLink, Navigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { CartContext } from "./cartProvider"
+
 
 export const HomePage =()=>{
   
     const [category , setCategories] =useState([])
     const {getCategoryHandler} = useContext(CartContext)
+const {filters , setFilter} =useContext(CartContext)
+const {getFiction ,getNonFiction ,getHorror} =useContext(CartContext)
 
 
 
@@ -34,33 +37,58 @@ export const HomePage =()=>{
     },[])
 
 
-
-    return(
-        <div >
-            
-          
-
-
     
 
-        
-            {
-                category.map((item )=>(
-                    <div
-                    className="homeBtn"
-                    
-                    
-                    key={item.id}>
 
-                        <h3 ><NavLink to="/productList" onClick={()=>getCategoryHandler(item.category)}>{item.category}</NavLink></h3>
-                        
-                        <p>{item.description}</p>
-                    </div>
-                ))
-            }
-        
-        
+    return(
+        <div
+        className="home-container">
+            <div className="home-card">
 
+            <h2 className="home-header">Online Book Store</h2>
+
+            <button className="home-btn"><NavLink className="home-link" to="/productList">Shop Now</NavLink></button>
+
+            <h3 className="home-cat">Shop By Categories</h3>
+            </div>
+
+
+            <p className="home-btn-card">
+                <button className="fic" value="fiction" onClick={getFiction}>Fiction</button>
+                <button className="non" value="nonfiction" onClick={getNonFiction}>NonFiction</button>
+                <button className="horror" value="horror" onClick={getHorror}> Horror</button>
+            </p>
+
+        
+        
+            <footer className="footer">
+
+<div className="bookstoreInfo">
+  <h2 className="book-head"> </h2>
+  <div>
+    <h2>Book Store</h2>
+  <p className="qoute" >The world belongs to those who read.</p>
+  <p   className="pp">Privacy Policy</p>
+  <p className="tou">Terms Of Use</p>
+  <p style={{fontSize:"small"}}> @2023 Book Store</p>
+</div>
+  <p className="connect">
+    <h3>Connect</h3>
+    <NavLink className="git" to="">GitHub</NavLink>
+    <NavLink className="tweet" to="">Twitter</NavLink>
+    <NavLink className="linked" to="">LinkedIn</NavLink>
+
+
+  </p>
+  <p className="resources">
+    <h3>Resources</h3>
+    <NavLink className="sign" to="signup">SignUp</NavLink>
+    <NavLink className="log" to="/login">LogIn</NavLink>
+  </p>
+</div>
+</footer>
+        
+        
         </div>
     )
 }

@@ -2,15 +2,16 @@ import React from "react";
 import { useContext, useEffect, useState } from "react"
 import { CartContext } from "./cartProvider"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
  export const ProductCart = ()=>{
-const [discount , SetDiscount] = useState(180)
-const [coupan ,setCoupan ] =useState(0)
-const [showCpn , setShowCpn] =useState("") 
+
 const [userCart , setUserCart] = useState([])
+
+const {discount ,SetDiscount ,coupan , setCoupan , showCpn , setShowCpn} =useContext(CartContext)
    
     const {cart ,setCart} = useContext(CartContext)
-    const {removeCartHandler} =useContext(CartContext)
+    
     const {GetProducts} =useContext(CartContext)
     const{useReduce} = useContext(CartContext)
 
@@ -68,8 +69,17 @@ const [userCart , setUserCart] = useState([])
 
         setCoupan(0)
     }
+    
+    const removeCartHandler=(id)=>{
 
-
+        console.log(id)
+    
+    const useFilter = cart.filter((element)=>element.id !== id)
+    
+    setCart(useFilter)
+    
+    }
+const navigate =useNavigate()
     
 
 
@@ -77,28 +87,34 @@ const [userCart , setUserCart] = useState([])
 
 
     return(
-        <div>
-            <h2>here is the cart </h2>
+        <div className="cartMain">
+            <p className="cartHeader">My Cart </p>
            
             {
-                cart.length === 0 ? <p>Cart is Empty</p>:
-                <div>
+                cart.length === 0 ? <p className="cartEmpty">Cart is Empty 😞</p>:
+
+                <div className="cartinfo">
                     <select onChange={coupanHandler} value="k">
                         <option value="all">Apply Coupan</option>
                         <option value="20"> 20%off:NewUser</option>
                         <option value="50">50%off:SummerSale</option>
                     </select>
-                    
+                    <hr></hr>
                     
                       <h2>Price Details</h2>
-                <p>Price: {useReduce }</p>
+                      <hr></hr>
+                <p>Price(Items {cart.length}): {useReduce }</p>
                 <p>Discount: {discount} </p>
-                <p style={{display:coupan === 0 ? "none" : "block"}} >Coupan Discount: {coupan}</p>
-                <p style={{display:showCpn.length > 0 ? "inline" :"none"}}>{ showCpn}</p>
-                <button onClick={RemoveCpnHandler} style={{display:coupan > 0 ? "inline" :"none"}}>Remove Coupan</button>
+                <p  >Coupan Discount: {coupan === 0 ? "0" :coupan}</p>
+                <p>Delivery Charges : FREE</p>
+                <p style={{display:coupan > 0 ? "inline" :"none" , padding:"0.5rem"}}>{ showCpn}</p>
+                <button onClick={RemoveCpnHandler} style={{display:coupan > 0 ? "inline" :"none" , border:"none" , backgroundColor:"#faf5ff" ,padding:"0.5rem"}}>❌</button>
+                <hr></hr>
                 <p><b>Total Price: {useReduce - discount - coupan}</b ></p>
+                <hr></hr>
 
-                <p>You'll save {discount + coupan } on this order</p>
+                <p style={{color:"red"}}>You'll save {discount + coupan } on this order</p>
+                <button className="removeCart" onClick={()=>navigate("/checkout")} style={{fontSize:"large" , fontWeight:"bold" , color:"white"}}> Checkout</button>
                 </div>
             }
             
@@ -107,11 +123,16 @@ const [userCart , setUserCart] = useState([])
             
 
             
-            
+             
             {
                 cart.map((element , index)=>
                 {
-                    const { id ,title , author , price ,image, quantity} = element
+
+                    
+                    
+                    const { id ,title , author , price ,image, quantity , rating , realPrice} = element
+
+                    
 
             
 
@@ -124,26 +145,32 @@ const [userCart , setUserCart] = useState([])
                     
                     return (
                     <div key={id} 
-                    style={{border:"solid 1px" ,padding:"1rem" ,margin:"1rem"}}
-                     >
-                        
-                        <h2>{title}</h2>
-                        <img src={image}></img>
-                        <h3>{author}</h3>
-                        <p>Price: {price}</p>
-                        <p>Quantity: {quantity}</p>
-                        <p>
-
-                        <button onClick={()=>IncrementHandler(index)}>+</button> 
-                        
-                        <button onClick={()=>DecrementHandler(index)}>-</button>
-                        </p>
-
-                        <button onClick={()=>removeCartHandler(id)}>Remove</button>
+                    className="cartProdCon"
                     
+                     >
+                        <div className="cartProd">
                         
+                        <img src={image}></img>
+                        <h2>{title}</h2>
                         
+                       
+                        <h3>{author}</h3>
+                        <p>  ⭐{rating}</p>
+                        <p>₹{price} <span style={{textDecoration:"line-through" , opacity:"0.2"}}>₹{realPrice}</span></p>
+                       
                         
+                        <span className="qty"><button  onClick={()=>IncrementHandler(index)}>+</button>  <span className="qtyNum"> {quantity}</span> <button onClick={()=>DecrementHandler(index)}>-</button></span>
+                        
+                       
+                        
+                       
+                        
+                            <div>
+                        <button className="removeCart" onClick={()=>removeCartHandler(id)}>Remove</button>
+                    
+                        </div>
+                        
+                        </div>
                     </div>
 
                 )

@@ -17,13 +17,14 @@ const [getPassword , setPassword] = useState("")
 const [isSignIn ,setIsSignIn] = useState(false)
 const [navItem , setNavItem] =useState(false)
 
-
-
+const [str , setStr] =useState("")
+const [alreadyInCart , setAlreadyCart] = useState(false)
+const [adressArr , setArr] = useState([{id:0 , name:"Mary Jane"  ,house:"301 , Wolf Street" , city:"Brisbane" , state:"West Australia" , country:"Australia" ,pincode:"1234" ,number:"61234589" , selected:true}])
 
 
 
 return(
-    <AuthContext.Provider value={{isLoggedIn , setLogIn , logInDisable , setLoginDisable , getFirstName , setFirstName , getLastName , setLastName , getemail , setemail ,getPassword , setPassword ,isSignIn , setIsSignIn , navItem , setNavItem , }}>
+    <AuthContext.Provider value={{isLoggedIn , setLogIn , logInDisable , setLoginDisable , getFirstName , setFirstName , getLastName , setLastName , getemail , setemail ,getPassword , setPassword ,isSignIn , setIsSignIn  , str , setStr , alreadyInCart , setAlreadyCart  ,adressArr ,setArr  }}>
         {children}
     </AuthContext.Provider>
 )

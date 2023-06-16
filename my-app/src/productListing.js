@@ -17,22 +17,36 @@ export const ProductList =()=>{
     const {SortHandler} =useContext(CartContext)
     const {value} = useContext(CartContext)
     const {clear} = useContext(CartContext)
+    const {GetProducts} =useContext(CartContext)
+    const {filters , setFilter} = useContext(CartContext)
    
     const {AddToCartHandler} =useContext(CartContext)
     const {homeCategory} =useContext(CartContext)
     const {AddToWishlist} =useContext(CartContext)
     const {getCheckBoxArr} =useContext(CartContext)
-    const{clearFilterHandler} = useContext(CartContext)
+    
     const {state} =useContext(CartContext)
     const { getHorrorCategory} =useContext(CartContext)
+    const {getByFiction} =useContext(CartContext)
+    const {fictionBtn , setfictionBtn} =useContext(CartContext)
+    const { getByNonfiction} =useContext(CartContext)
+    const {nonfictionBtn} =useContext(CartContext)
+    const {getByHorror} =useContext(CartContext)
+    const {horrorBtn} =useContext(CartContext)
+
+    const {str} = useContext(AuthContext)
     
     
 
     
+const clearFilterHandler=()=>{
+  window.location.reload();
+}
+    
 
-    const data = state ? clear   : getSearchData
-
-  
+  const fiction = fictionBtn ? getByFiction : getSearchData
+  const nonFiction = nonfictionBtn ?  getByNonfiction : fiction
+  const horror = horrorBtn ? getByHorror : nonFiction
     
     
     
@@ -44,6 +58,7 @@ export const ProductList =()=>{
 
 
           <div className="filters">
+          <h2>{str}</h2>
 
            
         <h2>Filters</h2>
@@ -52,7 +67,7 @@ export const ProductList =()=>{
 
         <h3>By category</h3>
         <label>Fiction</label>
-        <input onChange={getCheckBoxArr} type="checkbox" value="fiction"   ></input>
+        <input onChange={getCheckBoxArr} type="checkbox" value="fiction"    ></input>
         
         <label>Non-Fiction</label>
         <input onChange={getCheckBoxArr} type="checkbox" value="nonfiction"></input>
@@ -92,14 +107,12 @@ export const ProductList =()=>{
 
 <div className="productContainer"> 
  
-<p>k</p>
-
-
+       
 
 
             {
 
-                data.map((item)=>
+                horror.map((item)=>
                 < ProductCard {...item} isProdDetail/>)
 
 

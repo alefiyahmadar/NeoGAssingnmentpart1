@@ -1,5 +1,7 @@
 import React from "react";
 import { useContext } from "react"
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { CartContext } from "./cartProvider"
 
 export const GetWishlist =()=>{
@@ -7,22 +9,78 @@ export const GetWishlist =()=>{
 const {getWishList}  =useContext(CartContext)
 const {RemoveWish} = useContext(CartContext)
 
-    return(
-        <div>
 
-            <h2>WishList</h2>
+
+const {AddToCartHandler  } = useContext(CartContext)
+
+
+const [ isAddedToCart , SetAddToCart] = useState(false)
+const[DisableBtn , setDisable] = useState(false)
+
+
+
+                    
+       
+const handleText = ()=>{
+
+    SetAddToCart(true)
+}
+const handleDisable = ()=>{
+
+    setDisable(true)
+}
+
+    return(
+        <div className="wishlist-main">
+
+            <h2 className="wishlist-head">WishList</h2> 
+            {
+                getWishList.length > 0  ? "" :<p style={{margin:"auto" , fontWeight:"bold" , fontSize:"larger"}}>Wishlist Is Empty😞</p>
+            }
 
             {
-                getWishList.map((element)=>{
-                    const {id , title , author , image , price } = element
+                getWishList.map((item)=>{
+                    const {id , title , author , image , price ,rating ,realPrice } = item
+
+
+                    const handleWish =()=>{
+
+                        
+                        AddToCartHandler(item)
+                        
+                    }
+
+
+
+                    
 
                     return(
-                        <div key={id}>
-                            <h2>{title}</h2>
-                            <img src={image}></img>
-                            <h3>{author}</h3>
-                            <p>{price}</p>
-                            <button onClick={()=>RemoveWish(id)}> Remove</button>
+                        <div style={{margin:"0%"}}>
+                            <hr className="wish-hr"></hr>
+                        <div key={id}
+                        className="wish-card">
+
+                            
+                            
+                            
+                             <img src={image}></img> 
+                             <div className="info">
+                            <h2 className="wish-title">{title}</h2>
+                           
+                            <h3 className="wish-aouthor">{author}</h3>
+                            <p className="wish-price">₹{price} <span style={{textDecoration:"line-through" , opacity:"0.2"}}>₹{realPrice}</span></p>
+                            <p className="wish-rating">  ⭐{rating}</p>
+
+                                            
+            <button className="wish-btn" onClick={handleWish  }  > <NavLink style={{textDecoration:"none" ,color:"#faf5ff" , fontWeight:"bold"}} to="/productCart"> Move To Cart</NavLink></button>
+
+                        
+                       
+                            </div>
+                            <button className="remove-wish" onClick={()=>RemoveWish(id)}> 🗑️</button>
+            
+                        </div>
+                        
                         </div>
 
                     )

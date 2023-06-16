@@ -1,11 +1,14 @@
 import React from "react";
 import { createContext, useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
 
     const [GetProducts, setProducts] = useState([])
+
+    const [categoryFilter , setCategoryFilter] =useState([])
 
     const [filters , setFilter] = useState({checkBox:[] ,sort:"" , rating:""  , searchValue:""  , categoryValue:""})
     
@@ -18,9 +21,14 @@ export const CartProvider = ({ children }) => {
 
     
     const [getWishList , setWishlist] = useState([])
+    const [fictionBtn , setfictionBtn] =useState(false)
+    const [nonfictionBtn , setnonfictionBtn] =useState(false)
+    const [horrorBtn , setHorrorBtn] =useState(false)
+    const [discount , SetDiscount] = useState(180)
+const [coupan ,setCoupan ] =useState(0)
+const [showCpn , setShowCpn] =useState("") 
     
-    
-
+const navigate =useNavigate()
 
 
 
@@ -124,12 +132,6 @@ const getCategoryHandler =(category)=>{
    
 
 
-const clearFilterHandler = (e)=>{
-
-    setState(true)
-    
-    
-}
 
 
 
@@ -137,7 +139,7 @@ const clearFilterHandler = (e)=>{
     
 
        
-
+ 
         
         setCart([...cart ,{ ...item }])
 
@@ -148,16 +150,7 @@ const clearFilterHandler = (e)=>{
 
         const useReduce = cart.reduce((acc ,curr)=>acc + curr.price * curr.quantity , 0)
         
-    
-const removeCartHandler=(id)=>{
 
-    console.log(id)
-
-const useFilter = cart.filter((element)=>element.id !== id)
-
-setCart(useFilter)
-
-}
 
 
 
@@ -177,6 +170,45 @@ const RemoveWish =(id) =>{
 }
 
 
+const getFiction=(e)=>{
+
+    setCategoryFilter([e.target.value])
+    setfictionBtn(true)
+    navigate("/productList")
+    
+
+    
+
+}
+console.log(categoryFilter)
+
+const getByFiction = categoryFilter.length>0?GetProducts.filter((element)=>categoryFilter.some((cat)=>element[cat])) :GetProducts
+
+console.log(getByFiction)
+
+
+const getNonFiction =(e)=>{
+
+    
+    setCategoryFilter([e.target.value])
+    setnonfictionBtn(true)
+    navigate("/productList")
+
+}
+const getByNonfiction = categoryFilter.length >0 ? GetProducts.filter((element)=>categoryFilter.some((cat)=>element[cat])) : GetProducts
+
+
+
+const getHorror=(e)=>{
+
+    setCategoryFilter([e.target.value])
+    setHorrorBtn(true)
+    navigate("/productList")
+}
+const getByHorror = categoryFilter.length>0 ? GetProducts.filter((element)=>categoryFilter.some((cat)=>element[cat])) : GetProducts
+
+
+
 
 
 
@@ -185,7 +217,7 @@ const RemoveWish =(id) =>{
 
 
     return (
-        <CartContext.Provider value={{ GetProducts, getRating, SortHandler,RatingHandler,value,SearchBarHandler,getSearchData,clear,clearFilterHandler , state , AddToCartHandler , cart  , setCart,useReduce , removeCartHandler   ,AddToWishlist , getWishList , RemoveWish ,getCheckBoxArr ,getSearchData , getCategoryHandler  }}>
+        <CartContext.Provider value={{ GetProducts, getRating, SortHandler,RatingHandler,value,SearchBarHandler,getSearchData,clear , state , AddToCartHandler , cart  , setCart,useReduce    ,AddToWishlist , getWishList , RemoveWish ,getCheckBoxArr ,getSearchData , getCategoryHandler , filters , setFilter ,getFiction ,getByFiction ,getNonFiction , getByNonfiction, getHorror , getByHorror , fictionBtn  ,nonfictionBtn , horrorBtn ,discount ,SetDiscount ,coupan , setCoupan , showCpn , setShowCpn }}>
             {children}
         </CartContext.Provider>
     )

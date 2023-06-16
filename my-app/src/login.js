@@ -8,6 +8,7 @@ export const LoginPage = ()=>{
 
     const {isLoggedIn , setLogIn} =useContext(AuthContext)
   const {logInDisable , setLoginDisable} =useContext(AuthContext)
+  const {str , setStr} = useContext(AuthContext)
   
 
   
@@ -26,6 +27,7 @@ export const LoginPage = ()=>{
 
 
       setLogIn(!isLoggedIn)
+      setStr("")
 
       navigate(location.state.from.pathname)
       setLoginDisable(!logInDisable)
