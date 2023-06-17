@@ -2,9 +2,9 @@ import React from "react";
 import { useContext, useState } from "react"
 import { NavLink, useParams } from "react-router-dom"
 
-import { CartContext } from "./cartProvider"
+import { CartContext } from "../context/cartProvider"
 import { ProductCard } from "./productCard"
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
 export const ProductDetails =()=>{
 

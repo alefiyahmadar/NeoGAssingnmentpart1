@@ -3,8 +3,8 @@ import React from "react";
 
 import { useContext, useState } from "react"
 import { NavLink, Navigate , useParams } from "react-router-dom"
-import { CartContext } from "./cartProvider"
-import { AuthContext } from "./AuthContext";
+import { CartContext } from "../context/cartProvider"
+import { AuthContext } from "../context/AuthContext";
 
 
 

@@ -1,10 +1,10 @@
 import React from "react";
 import  { useState } from "react"
 import { useContext } from "react"
-import { CartContext } from "./cartProvider"
+import { CartContext } from "../context/cartProvider"
 import {NavLink, navLink} from "react-router-dom"
 import { ProductCard } from "./productCard"
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
 
 export const ProductList =()=>{

@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
-import { CartContext } from "./cartProvider"
+import { CartContext } from "../context/cartProvider"
 import { useState } from "react"
-import { AuthContext } from "./AuthContext"
+import { AuthContext } from "../context/AuthContext"
 
 
 

@@ -5,19 +5,19 @@ import "./App.css";
 
 import {Route , Routes , NavLink, useLocation, useNavigate} from "react-router-dom"
 
-import { HomePage } from "./home";
-import { ProductList } from "./productListing";
-import { ProductCart } from "./Cart";
+import { HomePage } from "./pages/home";
+import { ProductList } from "./pages/productListing";
+import { ProductCart } from "./pages/Cart";
 import { useContext, useState } from "react";
-import { CartContext } from "./cartProvider";
-import { ProductDetails } from "./productDetails";
-import { GetWishlist } from "./wishlist";
-import { LoginPage } from "./login";
-import { AuthWrapper } from "./AuthWrapper";
-import { AuthContext } from "./AuthContext";
-import { UserPage } from "./user";
-import { SignUp } from "./signup";
-import { CheckOut } from "./checkout";
+import { CartContext } from "./context/cartProvider";
+import { ProductDetails } from "./pages/productDetails";
+import { GetWishlist } from "./pages/wishlist";
+import { LoginPage } from "./pages/login";
+import { AuthWrapper } from "./pages/AuthWrapper";
+import { AuthContext } from "./context/AuthContext";
+import { UserPage } from "./pages/user";
+import { SignUp } from "./pages/signup";
+import { CheckOut } from "./pages/checkout";
 
 
 function App() {

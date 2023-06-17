@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
-import { CartContext } from "./cartProvider"
+import { CartContext } from "../context/cartProvider"
 
 
 export const HomePage =()=>{
@@ -74,9 +74,9 @@ const {getFiction ,getNonFiction ,getHorror} =useContext(CartContext)
 </div>
   <p className="connect">
     <h3>Connect</h3>
-    <NavLink className="git" to="">GitHub</NavLink>
+    <NavLink className="git" to="https://github.com/alefiyahmadar">GitHub</NavLink>
     <NavLink className="tweet" to="">Twitter</NavLink>
-    <NavLink className="linked" to="">LinkedIn</NavLink>
+    <NavLink className="linked" to="https://www.linkedin.com/in/alefiyah-madarwala-16b821259/">LinkedIn</NavLink>
 
 
   </p>
