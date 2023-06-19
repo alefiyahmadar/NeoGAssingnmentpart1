@@ -58,7 +58,7 @@ const [getAdress , setShowAdress] =useState()
 
         setUser(false)
         
-        setAdress(true)
+        
 
     }
 
@@ -76,7 +76,7 @@ const [getAdress , setShowAdress] =useState()
     const AddAdress =()=>{
         
 
-setAdress(true)
+
 setAdressBar(false)
         setId(id +1)
         
