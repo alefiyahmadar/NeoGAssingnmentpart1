@@ -13,11 +13,11 @@ export const CheckOut =()=>{
     <h4>1234</h4>
     <h4>Phone Number 61234589</h4>
     </div>)
-    const [check , setCheck] =useState(false)
+    
 
     const {cart } =useContext(CartContext)
     const{useReduce} = useContext(CartContext)
-    const {discount ,SetDiscount ,coupan , setCoupan , showCpn , setShowCpn} =useContext(CartContext)
+    const {discount  ,coupan , setCoupan , showCpn , setShowCpn} =useContext(CartContext)
 const {adressArr} =useContext(AuthContext)
 
 const [newArr , setArr] = useState(adressArr)
@@ -27,23 +27,7 @@ const [newArr , setArr] = useState(adressArr)
 
 console.log(cart)
 
-const coupanHandler = (e)=>{
 
-    if(e.target.value === "20"){
-
-        const getAmt = (useReduce*20)/100
-        setCoupan(getAmt)
-        setShowCpn("NewUser")
-    } else if(e.target.value === "50"){
-
-        const getHalf = (useReduce*50)/100
-        setCoupan(getHalf)
-        setShowCpn("SummerSale")
-    }else{
-
-        setCoupan(0)
-    }
-}
 const getUserAdressHandler =(id)=>{
 
 

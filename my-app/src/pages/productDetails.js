@@ -3,12 +3,12 @@ import { useContext, useState } from "react"
 import { NavLink, useParams } from "react-router-dom"
 
 import { CartContext } from "../context/cartProvider"
-import { ProductCard } from "./productCard"
+
 import { AuthContext } from "../context/AuthContext";
 
 export const ProductDetails =()=>{
 
-    const [state , setState ]=useState([])
+    
 
     
     const [ isAddedToCart , SetAddToCart] = useState(false)
@@ -21,12 +21,12 @@ export const ProductDetails =()=>{
    
     const {AddToCartHandler  } = useContext(CartContext)
     const {AddToWishlist} = useContext(CartContext)
-    const {RemoveWish} = useContext(CartContext)
+    
     const {GetProducts} =useContext(CartContext)
 
 
     const {isLoggedIn} = useContext(AuthContext)
-    const {str , setStr} = useContext(AuthContext)
+    
     
 
     const {productId} =useParams()
@@ -56,11 +56,12 @@ export const ProductDetails =()=>{
 
             {
 
-                GetProducts.map((item)=>{
+                GetProducts.map((item)=>
+                {
                     if(item.id === productId){
 
                         
-    const {_id,id , title , author , price  ,quantity,image , rating,realPrice, isProdDetail , checkCart} = item
+    const {id , title  , price  ,image , rating,realPrice } = item
 
        
 const handleText = ()=>{
@@ -142,7 +143,7 @@ const handleClickWishlist = ()=>{
 
 
             
-            <img className="item-img" src={image}></img>
+            <img className="item-img" src={image} alt=""></img>
             <div className="detail">
             <h2 className="item-title">{title}</h2>
             <p className="item-rating">  ⭐{rating}</p>
@@ -168,10 +169,7 @@ const handleClickWishlist = ()=>{
 </div>
              
              
-             {
- 
-                 checkCart && <button className="Cartbtn">Already In Cart</button>
-             }
+            
  
  
          </div>

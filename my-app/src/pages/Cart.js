@@ -1,18 +1,18 @@
 import React from "react";
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { CartContext } from "../context/cartProvider"
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
  export const ProductCart = ()=>{
 
-const [userCart , setUserCart] = useState([])
+
 
 const {discount ,SetDiscount ,coupan , setCoupan , showCpn , setShowCpn} =useContext(CartContext)
    
     const {cart ,setCart} = useContext(CartContext)
     
-    const {GetProducts} =useContext(CartContext)
+    
     const{useReduce} = useContext(CartContext)
 
     
@@ -150,7 +150,7 @@ const navigate =useNavigate()
                      >
                         <div className="cartProd">
                         
-                        <img src={image}></img>
+                        <img src={image} alt=""></img>
                         <h2>{title}</h2>
                         
                        

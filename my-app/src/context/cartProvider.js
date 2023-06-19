@@ -1,6 +1,6 @@
 import React from "react";
 import { createContext, useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 export const CartContext = createContext()
 
@@ -16,8 +16,8 @@ export const CartProvider = ({ children }) => {
     const [value , setValue] = useState(0)
     const [clear , setClear] = useState([])
     const [cart ,setCart] =useState([])
-    const [state ,setState] = useState(false)
-    const [getCategory , setCategory] = useState([])
+    
+    
 
     
     const [getWishList , setWishlist] = useState([])
@@ -40,8 +40,7 @@ const navigate =useNavigate()
             const response = await res.json()
             const { products } = response
             setProducts(products)
-            setClear(products)
-            setCategory(products)
+            
             
 
             
@@ -217,7 +216,7 @@ const getByHorror = categoryFilter.length>0 ? GetProducts.filter((element)=>cate
 
 
     return (
-        <CartContext.Provider value={{ GetProducts, getRating, SortHandler,RatingHandler,value,SearchBarHandler,getSearchData,clear , state , AddToCartHandler , cart  , setCart,useReduce    ,AddToWishlist , getWishList , RemoveWish ,getCheckBoxArr ,getSearchData , getCategoryHandler , filters , setFilter ,getFiction ,getByFiction ,getNonFiction , getByNonfiction, getHorror , getByHorror , fictionBtn  ,nonfictionBtn , horrorBtn ,discount ,SetDiscount ,coupan , setCoupan , showCpn , setShowCpn }}>
+        <CartContext.Provider value={{ GetProducts, getRating, SortHandler,RatingHandler,value,SearchBarHandler,getSearchData,clear  , AddToCartHandler , cart  , setCart,useReduce    ,AddToWishlist , getWishList , RemoveWish ,getCheckBoxArr  , getCategoryHandler , filters , setFilter ,getFiction ,getByFiction ,getNonFiction , getByNonfiction, getHorror , getByHorror , fictionBtn  ,nonfictionBtn , horrorBtn ,discount ,SetDiscount ,coupan , setCoupan , showCpn , setShowCpn }}>
             {children}
         </CartContext.Provider>
     )

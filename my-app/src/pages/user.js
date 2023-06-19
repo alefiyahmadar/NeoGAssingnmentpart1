@@ -15,7 +15,7 @@ export const UserPage = ()=>{
     
 
 
-    const [profile , setProfile] = useState()
+    
     
     
     
@@ -30,7 +30,7 @@ const [getNumber , setNumber] = useState("")
 const [id , setId] =useState(1) 
 
 const [showAdressBar , setAdressBar] =useState(false)
-const [showAdress , setAdress ] =useState(false)
+
 const [getUser , setUser] = useState(true)
 const [getAdress , setShowAdress] =useState()
 
@@ -42,7 +42,7 @@ const [getAdress , setShowAdress] =useState()
     const navigate = useNavigate()
 
     
-    const { getFirstName  , getLastName , getemail ,getPassword } = useContext(AuthContext)
+    const { getFirstName  , getLastName , getemail  } = useContext(AuthContext)
 
     const getProfile =()=>{
 

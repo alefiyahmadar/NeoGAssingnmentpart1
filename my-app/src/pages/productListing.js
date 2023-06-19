@@ -3,7 +3,7 @@ import React from "react";
 import { useContext } from "react"
 import { CartContext } from "../context/cartProvider"
 import { ProductCard } from "./productCard"
-import { AuthContext } from "../context/AuthContext";
+
 
 
 export const ProductList =()=>{
