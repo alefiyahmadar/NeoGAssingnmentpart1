@@ -2,7 +2,7 @@ import React from "react";
 
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
-import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 export const SignUp =()=>{
@@ -11,7 +11,7 @@ export const SignUp =()=>{
    const {isSignIn ,setIsSignIn} =useContext(AuthContext)
 
 
-    const { getFirstName , setFirstName , getLastName , setLastName , getemail , setemail ,getPassword , setPassword} = useContext(AuthContext)
+    const {   setFirstName  , setLastName ,  setemail , setPassword} = useContext(AuthContext)
 
 
 

@@ -15,7 +15,7 @@ const [getLastName , setLastName] = useState("")
 const [getemail , setemail] = useState("")
 const [getPassword , setPassword] = useState("")
 const [isSignIn ,setIsSignIn] = useState(false)
-const [navItem , setNavItem] =useState(false)
+
 
 const [str , setStr] =useState("")
 const [alreadyInCart , setAlreadyCart] = useState(false)

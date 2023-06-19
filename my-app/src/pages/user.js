@@ -3,15 +3,15 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"
 
-import { useRef } from "react";
+
 
 
 export const UserPage = ()=>{
 
     const{adressArr , setArr} =useContext(AuthContext)
-    const {isSignIn ,setIsSignIn} =useContext(AuthContext)
-    const {isLoggedIn , setLogIn} =useContext(AuthContext)
-    const {navItem , setNavItem} = useContext(AuthContext)
+    
+    const { setLogIn} =useContext(AuthContext)
+    
     
 
 
@@ -33,7 +33,7 @@ const [showAdressBar , setAdressBar] =useState(false)
 const [showAdress , setAdress ] =useState(false)
 const [getUser , setUser] = useState(true)
 const [getAdress , setShowAdress] =useState()
-const[save , setSave] =useState(false)
+
 
 
 

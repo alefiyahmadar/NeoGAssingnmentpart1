@@ -6,9 +6,7 @@ import { CartContext } from "../context/cartProvider"
 
 export const HomePage =()=>{
   
-    const [category , setCategories] =useState([])
-    const {getCategoryHandler} = useContext(CartContext)
-const {filters , setFilter} =useContext(CartContext)
+    
 const {getFiction ,getNonFiction ,getHorror} =useContext(CartContext)
 
 

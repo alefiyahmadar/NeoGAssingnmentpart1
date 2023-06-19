@@ -2,7 +2,7 @@ import React from "react";
 
 
 import { useContext, useState } from "react"
-import { NavLink, Navigate , useParams } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { CartContext } from "../context/cartProvider"
 import { AuthContext } from "../context/AuthContext";
 
@@ -22,9 +22,9 @@ export const ProductCard =(item )=>{
    
     const {AddToCartHandler  } = useContext(CartContext)
     const {AddToWishlist} = useContext(CartContext)
-    const {RemoveWish} = useContext(CartContext)
+    
     const {isLoggedIn} = useContext(AuthContext)
-    const {str , setStr} = useContext(AuthContext)
+    
     
     
     
@@ -35,7 +35,7 @@ export const ProductCard =(item )=>{
 
 
 
-    const {_id,id , title , author , price  ,quantity,image , rating, realPrice ,  isProdDetail } = item
+    const {id , title , author , price  ,image , rating ,  isProdDetail } = item
     
 
 const handleText = ()=>{
@@ -125,7 +125,7 @@ const handleClickWishlist = ()=>{
             
 
             <h2 className="item-title">{title}</h2>
-            <img src={image}></img>
+            <img src={image} alt=""></img>
             
             <h3 className="item-author">{author}</h3>
             <p className="item-price"> Price: {price}</p>

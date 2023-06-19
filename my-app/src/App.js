@@ -3,12 +3,12 @@ import React from "react";
 import "./App.css";
 
 
-import {Route , Routes , NavLink, useLocation, useNavigate} from "react-router-dom"
+import {Route , Routes , NavLink} from "react-router-dom"
 
 import { HomePage } from "./pages/home";
 import { ProductList } from "./pages/productListing";
 import { ProductCart } from "./pages/Cart";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "./context/cartProvider";
 import { ProductDetails } from "./pages/productDetails";
 import { GetWishlist } from "./pages/wishlist";
@@ -25,10 +25,9 @@ function App() {
   const {useReduce} = useContext(CartContext)
   const {cart} = useContext(CartContext)
   const {getWishList}  =useContext(CartContext)
-  const {isLoggedIn , setLogIn} =useContext(AuthContext)
-  const {logInDisable , setLoginDisable} =useContext(AuthContext)
+  
   const {SearchBarHandler} = useContext(CartContext)
-  const {isSignIn ,setIsSignIn} =useContext(AuthContext)
+  const {isSignIn } =useContext(AuthContext)
 
  
 

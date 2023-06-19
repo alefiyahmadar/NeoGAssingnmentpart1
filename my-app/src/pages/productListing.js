@@ -1,8 +1,7 @@
 import React from "react";
-import  { useState } from "react"
+
 import { useContext } from "react"
 import { CartContext } from "../context/cartProvider"
-import {NavLink, navLink} from "react-router-dom"
 import { ProductCard } from "./productCard"
 import { AuthContext } from "../context/AuthContext";
 
@@ -16,25 +15,17 @@ export const ProductList =()=>{
     const {getSearchData} =useContext(CartContext)
     const {SortHandler} =useContext(CartContext)
     const {value} = useContext(CartContext)
-    const {clear} = useContext(CartContext)
-    const {GetProducts} =useContext(CartContext)
-    const {filters , setFilter} = useContext(CartContext)
    
-    const {AddToCartHandler} =useContext(CartContext)
-    const {homeCategory} =useContext(CartContext)
-    const {AddToWishlist} =useContext(CartContext)
     const {getCheckBoxArr} =useContext(CartContext)
     
-    const {state} =useContext(CartContext)
-    const { getHorrorCategory} =useContext(CartContext)
     const {getByFiction} =useContext(CartContext)
-    const {fictionBtn , setfictionBtn} =useContext(CartContext)
+    const {fictionBtn } =useContext(CartContext)
     const { getByNonfiction} =useContext(CartContext)
     const {nonfictionBtn} =useContext(CartContext)
     const {getByHorror} =useContext(CartContext)
     const {horrorBtn} =useContext(CartContext)
 
-    const {str} = useContext(AuthContext)
+    
     
     
 
@@ -58,7 +49,7 @@ const clearFilterHandler=()=>{
 
 
           <div className="filters">
-          <h2>{str}</h2>
+          
 
            
         <h2>Filters</h2>

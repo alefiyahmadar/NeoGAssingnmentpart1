@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react"
-import { useState } from "react";
+
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../context/cartProvider"
 
@@ -14,21 +14,13 @@ const {RemoveWish} = useContext(CartContext)
 const {AddToCartHandler  } = useContext(CartContext)
 
 
-const [ isAddedToCart , SetAddToCart] = useState(false)
-const[DisableBtn , setDisable] = useState(false)
+
 
 
 
                     
        
-const handleText = ()=>{
 
-    SetAddToCart(true)
-}
-const handleDisable = ()=>{
-
-    setDisable(true)
-}
 
     return(
         <div className="wishlist-main">
@@ -63,7 +55,7 @@ const handleDisable = ()=>{
                             
                             
                             
-                             <img src={image}></img> 
+                             <img src={image} alt=""></img> 
                              <div className="info">
                             <h2 className="wish-title">{title}</h2>
                            
