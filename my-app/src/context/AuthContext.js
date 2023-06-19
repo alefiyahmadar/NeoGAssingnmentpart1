@@ -11,7 +11,7 @@ export const AuthContextProvider = ({children})=>{
     const [isLoggedIn , setLogIn ] =useState(false)
     const[logInDisable , setLoginDisable] =useState(false)
 const [getFirstName , setFirstName] = useState("")
-const [getLastName , setLastName] = useState("")
+const [getLastName , setLastName] = useState("") 
 const [getemail , setemail] = useState("")
 const [getPassword , setPassword] = useState("")
 const [isSignIn ,setIsSignIn] = useState(false)
