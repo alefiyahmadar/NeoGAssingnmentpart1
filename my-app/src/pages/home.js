@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { NavLink } from "react-router-dom"
 import { CartContext } from "../context/cartProvider"
 
@@ -11,29 +11,8 @@ const {getFiction ,getNonFiction ,getHorror} =useContext(CartContext)
 
 
 
-    const GetCategories = async()=>{
-
-        try{
-    
-    const res = await fetch("/api/categories")
-    
-    const response = await res.json()
-    const {categories} = response
-    setCategories(categories)
     
     
-    
-    
-    
-        }catch(e){
-            console.error(e)
-        }
-    }
-
-    useEffect(()=>{
-        GetCategories()
-    },[])
-
 
     
 
