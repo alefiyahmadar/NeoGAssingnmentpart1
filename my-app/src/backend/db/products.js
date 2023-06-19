@@ -72,7 +72,7 @@ export const products = [
   },{
     _id: uuid(),
     title: "Silent Spring",
-    image:"https://d1b14unh5d6w7g.cloudfront.net/0141184949.01.S001.LXXXXXXX.jpg?Expires=1686126211&Signature=HzRp1sntnig4fFK1VduH25cH0y-NA8XzRgx6zTiK-4PWLr55mC5IDTqkEGheK4rpTJXn3eyM9sSWtrU7v0bQpYJ0AmWkX8~vNpy2TYjXmiJuwkV8yxjD6mN6tzz2B5rjMhlNigp9yPM9ZaH11bfWK5MCv2SmH4oatmMbeI0JCf0_&Key-Pair-Id=APKAIUO27P366FGALUMQ",
+    image:"https://m.media-amazon.com/images/I/31lNdry1IGL._SX324_BO1,204,203,200_.jpg",
     author: "Rachel Carson",
     price: 1500,
     realPrice:899,
