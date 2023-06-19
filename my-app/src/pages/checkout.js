@@ -17,7 +17,7 @@ export const CheckOut =()=>{
 
     const {cart } =useContext(CartContext)
     const{useReduce} = useContext(CartContext)
-    const {discount  ,coupan , setCoupan , showCpn , setShowCpn} =useContext(CartContext)
+    const {discount  ,coupan  , showCpn } =useContext(CartContext)
 const {adressArr} =useContext(AuthContext)
 
 const [newArr , setArr] = useState(adressArr)

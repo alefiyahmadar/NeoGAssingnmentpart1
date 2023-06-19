@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { CartContext } from "../context/cartProvider"
 
 import { useNavigate } from "react-router-dom";
