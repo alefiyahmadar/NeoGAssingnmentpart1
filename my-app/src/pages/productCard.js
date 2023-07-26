@@ -4,7 +4,7 @@ import React from "react";
 import { useContext, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { CartContext } from "../context/cartProvider"
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext"; 
 
 
 
@@ -21,7 +21,7 @@ export const ProductCard =(item )=>{
     
    
     const {AddToCartHandler  } = useContext(CartContext)
-    const {AddToWishlist} = useContext(CartContext)
+    const {AddToWishlist , GetProducts, setProducts} = useContext(CartContext)
     
     const {isLoggedIn} = useContext(AuthContext)
     
@@ -81,12 +81,19 @@ const handleWishlistDisable =()=>{
 }
 
 
-const handleClickWishlist = ()=>{
+const handleClickWishlist = (id)=>{
+    
 
     if(isLoggedIn === true){
     
     AddToWishlist(item)
     handleWishlistDisable()
+
+    
+
+  
+   
+
     }else{
         alert("Please Login")
         
@@ -97,7 +104,7 @@ const handleClickWishlist = ()=>{
 
 
 }
-
+console.log(GetProducts)
 
 
 
@@ -119,7 +126,7 @@ const handleClickWishlist = ()=>{
 
             
 
-<button className="heart-button" style={{opacity:DisableWishlist ? "1" : "0.2"}} onClick={ handleClickWishlist} disabled={DisableWishlist} ></button>
+<button className="heart-button" style={{opacity:DisableWishlist ? "1" : "0.2"}} onClick={()=>handleClickWishlist(id)} disabled={DisableWishlist} ></button>
 
 
             

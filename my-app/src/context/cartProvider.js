@@ -216,7 +216,7 @@ const getByHorror = categoryFilter.length>0 ? GetProducts.filter((element)=>cate
 
 
     return (
-        <CartContext.Provider value={{ GetProducts, getRating, SortHandler,RatingHandler,value,SearchBarHandler,getSearchData  , AddToCartHandler , cart  , setCart,useReduce    ,AddToWishlist , getWishList , RemoveWish ,getCheckBoxArr  , getCategoryHandler , filters , setFilter ,getFiction ,getByFiction ,getNonFiction , getByNonfiction, getHorror , getByHorror , fictionBtn  ,nonfictionBtn , horrorBtn ,discount ,SetDiscount ,coupan , setCoupan , showCpn , setShowCpn }}>
+        <CartContext.Provider value={{ GetProducts, setProducts, getRating, SortHandler,RatingHandler,value,SearchBarHandler,getSearchData  , AddToCartHandler , cart  , setCart,useReduce    ,AddToWishlist , getWishList , RemoveWish ,getCheckBoxArr  , getCategoryHandler , filters , setFilter ,getFiction ,getByFiction ,getNonFiction , getByNonfiction, getHorror , getByHorror , fictionBtn  ,nonfictionBtn , horrorBtn ,discount ,SetDiscount ,coupan , setCoupan , showCpn , setShowCpn }}>
             {children}
         </CartContext.Provider>
     )

@@ -15,7 +15,10 @@ export const products = [
     realPrice : 999,
     nonfiction: "nonfiction",
     rating:2,
-    quantity:1
+    quantity:1,
+    isLiked:false,
+    isAddedToCart:false,
+    isWished:false
   },
   {
     _id: uuid(),
@@ -26,7 +29,10 @@ export const products = [
     realPrice:1500,
     horror: "horror",
     rating:1,
-    quantity:1
+    quantity:1,
+    isLiked:false,
+    isAddedToCart:false,
+    isWished:false
   },
   {
     _id: uuid(),
@@ -37,7 +43,10 @@ export const products = [
     realPrice:1200,
     fiction: "fiction",
     rating:3,
-    quantity:1
+    quantity:1,
+    isLiked:false,
+    isAddedToCart:false,
+    isWished:false
     
   },
   {
@@ -49,7 +58,10 @@ export const products = [
     realPrice:799,
     fiction: "fiction",
     rating:4,
-    quantity:1
+    quantity:1,
+    isLiked:false,
+    isAddedToCart:false,
+    isWished:false
     
   },
   {
@@ -62,7 +74,10 @@ export const products = [
     realPrice:1800,
     horror: "horror",
     rating:5,
-    quantity:1
+    quantity:1,
+    isLiked:false,
+    isAddedToCart:false,
+    isWished:false
     
 
 
@@ -78,7 +93,10 @@ export const products = [
     realPrice:899,
     nonfiction: "nonfiction",
     rating:5,
-    quantity:1
+    quantity:1,
+    isLiked:false,
+    isAddedToCart:false,
+    isWished:false
     
   },{
 
@@ -90,7 +108,10 @@ export const products = [
     realPrice:1500,
     nonfiction: "nonfiction",
     rating:4,
-    quantity:1
+    quantity:1,
+    isLiked:false,
+    isAddedToCart:false,
+    isWished:false
 
 
 
@@ -105,7 +126,10 @@ export const products = [
     realPrice:1600,
     horror: "horror",
     rating:4,
-    quantity:1
+    quantity:1,
+    isLiked:false,
+    isAddedToCart:false,
+    isWished:false
 
 
 
@@ -118,7 +142,10 @@ export const products = [
     realPrice:100,
     nonfiction: "nonfiction",
     rating:3,
-    quantity:1
+    quantity:1,
+    isLiked:false,
+    isAddedToCart:false,
+    isWished:false
 
 
   }
